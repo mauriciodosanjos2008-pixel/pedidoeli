@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crianças, deixa eu contar uma história…</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bevan&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="chuva" aria-hidden="true"></div>
+
+    <!-- 1. Abertura -->
+    <section id="inicio">
+        <!-- Para usar uma foto de vocês: troque o <svg> por <img src="img/foto.jpg" alt=""> dentro da div.moldura -->
+        <div class="moldura">
+            <svg viewBox="0 0 120 120" role="img" aria-label="Guarda-chuva amarelo">
+                <path d="M60 14C32 14 12 36 10 62c8-7 16-7 25 0 8-7 17-7 25 0 8-7 17-7 25 0 9-7 17-7 25 0C106 36 88 14 60 14Z" fill="#ffd21f"/>
+                <path d="M60 62v36c0 8-12 8-12 0" fill="none" stroke="#5a3a22" stroke-width="5" stroke-linecap="round"/>
+                <circle cx="60" cy="12" r="3.5" fill="#5a3a22"/>
+            </svg>
+        </div>
+
+        <h1>Crianças, deixa eu contar como conheci a mãe de vocês</h1>
+
+        <p>
+            Foi num dia qualquer, e eu nem imaginava. Mas depois que ela entrou na minha vida,
+            o resto dos meus planos ficou pequeno perto de uma ideia só: estar ao lado dela.
+        </p>
+
+        <button id="abrir" class="btn amarelo">Tenho uma pergunta…</button>
+    </section>
+
+    <!-- 2. Suspense -->
+    <section id="espera">
+        <p class="narrador">Isso vai ser…</p>
+        <h1 class="legen"><span>Le</span><span>gen</span><span class="dots"><i>.</i><i>.</i><i>.</i></span></h1>
+        <p class="narrador">espera por isso…</p>
+    </section>
+
+    <!-- 3. Pedido -->
+    <section id="pedido">
+        <h1 class="neon">Você aceita namorar comigo?</h1>
+        <p id="balao" class="balao" aria-live="polite"></p>
+
+        <div class="botoes">
+            <button id="sim" class="btn amarelo">SIM</button>
+            <button id="nao" class="btn azul">NÃO</button>
+        </div>
+    </section>
+
+    <!-- 4. Final -->
+    <section id="final">
+        <h1 class="neon grande">…DÁRIO!</h1>
+
+        <div class="toca-aqui" aria-hidden="true">
+            <span class="mao esq">✋</span>
+            <span class="mao dir">✋</span>
+        </div>
+
+        <h2>Agora é oficial. 🤝</h2>
+        <p class="narrador">E crianças, foi assim que ela disse sim.</p>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
