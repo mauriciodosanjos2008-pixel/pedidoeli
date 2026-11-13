@@ -1,0 +1,138 @@
+:root{
+    --madeira:#24140d;
+    --tabua:#31190f;
+    --ambar:#ffb54a;
+    --guarda-chuva:#ffd21f;
+    --corne:#2f6bbd;
+    --papel:#f5ead0;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+body{
+    height:100vh;
+    height:100dvh;
+    overflow:hidden;
+    color:var(--papel);
+    text-align:center;
+    font-family:"Lora", Georgia, serif;
+    font-size:18px;
+    line-height:1.6;
+    /* tábuas do bar + luminária */
+    background:
+        radial-gradient(ellipse 60% 45% at 50% 0%, rgba(255,181,74,.28), transparent 70%),
+        repeating-linear-gradient(90deg, var(--madeira) 0 70px, var(--tabua) 70px 72px);
+}
+
+section{
+    position:fixed;
+    inset:0;
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:18px;
+    padding:24px;
+}
+#inicio{ display:flex; }
+
+h1,h2,.btn{
+    font-family:"Bevan", Georgia, serif;
+    font-weight:400;
+}
+h1{ font-size:clamp(28px, 6vw, 48px); line-height:1.15; max-width:18ch; }
+h2{ font-size:clamp(22px, 4vw, 32px); }
+p{ max-width:46ch; }
+
+.narrador{ font-style:italic; color:var(--ambar); }
+
+/* letreiro de neon do bar */
+.neon{
+    color:#fff3d6;
+    text-shadow:0 0 6px #fff3d6, 0 0 18px var(--ambar), 0 0 42px var(--ambar);
+    animation:acende 1.2s ease-out both;
+}
+.neon.grande{ font-size:clamp(44px, 12vw, 96px); max-width:none; }
+@keyframes acende{
+    0%{opacity:0}  8%{opacity:1}  12%{opacity:.2}  20%{opacity:1}
+    26%{opacity:.4} 34%{opacity:1} 100%{opacity:1}
+}
+
+/* guarda-chuva na moldura */
+.moldura{
+    width:200px; height:200px;
+    border-radius:50%;
+    border:6px solid var(--guarda-chuva);
+    background:#3a2216;
+    box-shadow:0 0 36px rgba(255,210,31,.45);
+    display:grid; place-items:center;
+    overflow:hidden;
+    animation:flutuar 3s ease-in-out infinite;
+}
+.moldura svg, .moldura img{ width:78%; height:78%; object-fit:cover; }
+.moldura img{ width:100%; height:100%; }
+@keyframes flutuar{ 50%{ transform:translateY(-10px); } }
+
+/* botões */
+.btn{
+    padding:16px 34px;
+    font-size:21px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    box-shadow:0 5px 0 rgba(0,0,0,.45);
+    transition:transform .12s;
+}
+.btn:active{ transform:translateY(3px); box-shadow:0 2px 0 rgba(0,0,0,.45); }
+.btn:focus-visible{ outline:3px solid #fff; outline-offset:3px; }
+.amarelo{ background:var(--guarda-chuva); color:#2a1a08; }
+.azul{ background:var(--corne); color:#fff; }
+
+.botoes{ display:flex; gap:24px; align-items:center; min-height:76px; }
+#sim{ transition:transform .25s; }
+#nao.fugindo{ position:fixed; z-index:5; transition:left .18s, top .18s; }
+
+.balao{
+    min-height:3.2em;
+    padding:10px 18px;
+    background:var(--papel);
+    color:#2a1a08;
+    border-radius:14px;
+    font-style:italic;
+    visibility:hidden;
+}
+.balao.on{ visibility:visible; }
+
+/* suspense: Le...gen...dário */
+.legen{ font-size:clamp(48px, 14vw, 110px); max-width:none; color:var(--guarda-chuva); }
+.legen span{ opacity:0; }
+.legen .dots i{ font-style:normal; margin:0 .04em; }
+.legen .dots i{ animation:pisca 1s infinite; }
+.legen .dots i:nth-child(2){ animation-delay:.2s; }
+.legen .dots i:nth-child(3){ animation-delay:.4s; }
+@keyframes pisca{ 50%{opacity:.15} }
+#espera.ativa .legen span{ animation:entra .5s forwards; }
+#espera.ativa .legen span:nth-child(2){ animation-delay:.9s; }
+#espera.ativa .legen span:nth-child(3){ animation-delay:1.6s; }
+@keyframes entra{ to{opacity:1} }
+
+/* high five */
+.toca-aqui{ display:flex; font-size:clamp(70px, 18vw, 130px); line-height:1; }
+.mao{ display:inline-block; }
+.mao.esq{ transform:scaleX(-1) rotate(-20deg); animation:esq 1.2s ease-in-out infinite; }
+.mao.dir{ transform:rotate(-20deg); animation:dir 1.2s ease-in-out infinite; }
+@keyframes esq{ 0%,100%{ translate:-28px 0 } 45%,55%{ translate:14px -6px } }
+@keyframes dir{ 0%,100%{ translate:28px 0 }  45%,55%{ translate:-14px -6px } }
+
+/* chuva de guarda-chuvas */
+#chuva{ position:fixed; inset:0; overflow:hidden; pointer-events:none; z-index:10; }
+.gc{
+    position:absolute; top:-60px;
+    animation:cai linear forwards;
+}
+@keyframes cai{ to{ transform:translateY(calc(100vh + 80px)) rotate(var(--giro)); } }
+
+@media (prefers-reduced-motion: reduce){
+    .moldura, .mao, .neon, .legen .dots i{ animation:none; }
+    #espera .legen span{ opacity:1; }
+}
